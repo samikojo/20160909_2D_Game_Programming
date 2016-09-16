@@ -1,0 +1,2 @@
+Microsoft General Naming Conventions: https://msdn.microsoft.com/en-us/library/ms229045(v=vs.110).aspx
+Microsoft C# Coding Conventions: https://msdn.microsoft.com/en-us/library/ff926074.aspx
