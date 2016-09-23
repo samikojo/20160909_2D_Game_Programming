@@ -7,9 +7,19 @@ namespace Runner
 	{
 		[SerializeField] private Transform _player;
 
-		void Update()
+		private bool _follow = true;
+
+		void Update ()
 		{
-			transform.position = new Vector3(_player.position.x + 6, 0, transform.position.z);
+			if ( _follow )
+			{
+				transform.position = new Vector3 ( _player.position.x + 6, 0, transform.position.z );
+			}
+		}
+
+		public void GameOver()
+		{
+			_follow = false;
 		}
 	}
 }

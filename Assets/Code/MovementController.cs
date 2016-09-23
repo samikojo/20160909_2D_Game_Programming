@@ -19,6 +19,7 @@ namespace Runner
 		[SerializeField] private Rigidbody2D _rigidbody;
 
 		private bool _isGrounded = false;
+		private bool _hasDoubleJumped = false;
 
 		private void Awake()
 		{
@@ -35,6 +36,7 @@ namespace Runner
 				if ( colliders[ i ].gameObject != gameObject )
 				{
 					_isGrounded = true;
+					_hasDoubleJumped = false;
 				}
 			}
 
@@ -52,8 +54,14 @@ namespace Runner
 			}
 
 			// Should we jump
-			if ( _isGrounded && jump )
+			if ( jump && (_isGrounded || !_hasDoubleJumped) )
 			{
+				if(!_isGrounded)
+				{
+					_hasDoubleJumped = true;
+					_rigidbody.velocity = new Vector2 ( _rigidbody.velocity.x, 0 );
+				}
+
 				_isGrounded = false;
 				_animator.SetBool( GroundedAnimationName, _isGrounded );
 				_rigidbody.AddForce( new Vector2( 0, _jumpForce ) );
